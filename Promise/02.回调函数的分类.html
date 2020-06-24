@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const arr = [2, 4, 5]
+        // arr.forEach(value => { //这是同步回调函数，同步回调函数不会放入回调队列（异步进程）中，执行完了才会结束。
+        //     console.log(value);
+        // })
+        // console.log('2222');
+
+
+        setTimeout(() => { //这是异步回调函数，会放入队列中，执行完同步任务后才执行
+            console.log(3333);
+        }, 0)
+        console.log(444);
+
+
+        // 常见的异步回调函数：
+        // 定时器回调
+        // Ajax回调
+        // Promise的成功|失败回调
+        // 事件回调
+
+
+        // 判断一个函数是异步回调函数还是同步回调函数：
+        // 在其后console.log一段话，看其先打印哪一段。
+        // 若先执行原函数，则表明原函数是同步回调函数。
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.左右两边结构必须相同
+
+        // let [a, b] = [2, 4, 6]
+        // console.log(a, b); //2 4
+
+        // let {
+        //     m,
+        //     n
+        // } = {
+        //     m: 20,
+        //     n: 30
+        // }
+        // console.log(m, n);
+
+        // let [obj, arr, num, str] = [{
+        //         a: 1,
+        //         b: 2
+        //     },
+        //     [3, 4, 6], 98, 'hahaha'
+        // ]
+        // console.log(obj, arr, num, str); //{a: 1, b: 2} (3) [3, 4, 6] 98 "hahaha"
+
+
+
+        // 2.右边必须是合法的
+        // let [a, b] = {
+        //     a,
+        //     b
+        // } //x
+
+
+        // 3.声明和赋值不能分开
+        let [a, b];
+        [a, b] = [3, 4] // Missing initializer in destructuring declaration
+    </script>
+</body>
+
+</html>

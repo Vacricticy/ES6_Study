@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <script>
+        // var存在的问题：
+        // 1.可以重复声明（可能导致团队中的命名冲突）
+        // var m = 2;
+        // var m = 4;
+
+        // 2.无法限制修改（其实可以通过Object.defineProperties()来限制修改）
+        // 3.全局作用域，函数作用域有效。没有块级作用域。
+        // if (true) {
+        //     var a = 2
+        // }
+        // alert(a) //2
+
+        // function fn() {
+        //     var a = 4
+        // }
+        // alert(a) //a is not defined
+
+
+        // let 不能重复声明 变量可修改 块级作用域有效
+        // const 不能重复声明 变量不可修改 块级作用域有效
+
+        // let a = 1;
+        // let a = 2; //Identifier 'a' has already been declared
+
+
+        var btns = document.querySelectorAll('button');
+
+        // ES5方法：
+        for (var i = 0; i < btns.length; i++) {
+            (function(i) {
+                btns[i].onclick = function() {
+                    console.log(i);
+                }
+            })(i)
+
+        }
+
+        // ES6方法：
+        // for (let i = 0; i < btns.length; i++) {
+        //     btns[i].onclick = function() {
+        //         console.log(i);
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
