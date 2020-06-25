@@ -18,3 +18,7 @@
     - promise
     - generator
     - 模块化
+
++ 编程思想
+    - 变量先定义为const，若发现会改变值，才将const改为let
+    - 带有on的基本就是回调函数，比如onResloved,onRejected,onclick,onmouseover(on表示当什么什么时候)

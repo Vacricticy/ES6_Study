@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 面试：什么是promise
+        // 1.抽象表达：promise是js中解决异步编程的新的解决方法
+        // 2.具体表达：
+        // 从语法上来说，Promise是一个构造函数
+        // 从功能上来讲,promise对象用来封装异步操作，并获取其结果
+
+        // promise状态的改变
+        // pending变成resolved,成功的数据一般称为value
+        // pending变成rejected,失败的数据一般称为reason
+
+
+        // 基本使用步骤
+        // 1.创建一个promise对象
+        // const p = new Promise((resolve, reject) => { //这个函数被称为执行器函数,是同步函数
+        //     console.log('执行器函数执行');
+        //     //2.执行异步操作任务
+        //     setTimeout(() => {
+        //         const time = new Date();
+        //         // 3.1如果成功，则调用resolve(value)
+        //         if (time % 2 == 0) {
+        //             resolve("成功的数据" + time);
+        //             // 3.2 如果失败，则调用reject(reason)
+        //         } else {
+
+        //             reject('失败的数据' + time)
+        //         }
+        //     }, 0)
+        // })
+        // console.log('promise()之后');
+
+        // p.then(value => { //该成功的回调函数有一个名字：onResolved
+        //     console.log(value);
+        // }, reason => { //失败的回调函数有一个名字：onRejected
+        //     console.log(reason);
+        // })
+
+
+
+        // promise状态的改变：
+        // const p = new Promise((reslove, reject) => {
+        //     setTimeout(() => {
+        //         reslove('11111')
+        //     }, 3000)
+        // })
+        // console.log(p);
+        // setTimeout(() => {
+        //     console.log(p);
+        // }, 4000)
+    </script>
+</body>
+
+</html>

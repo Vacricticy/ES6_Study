@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Promise.prototype.then()
+        // Promise.prototype.catch()
+        // Promise.resolve()
+        // Promise.reject()
+        // Promise.all()
+        // Promise.race()
+
+        // new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         if (new Date() % 2 === 0) {
+        //             resolve('1111')
+        //         } else {
+        //             reject('2222')
+        //         }
+        //     }, 0)
+        // }).then(value => {
+        //     console.log(value);
+        // }).catch(reason => {
+        //     console.log(reason);
+        // })
+
+        // 两个语法糖：Promise.reslove()、Promise.reject()
+        // const p1 = Promise.resolve(2)
+        // const p2 = Promise.reject(3)
+        // p1.then(value => {
+        //     console.log(value);
+        // })
+        // p2.then(null, reason => {
+        //     console.log(reason);
+        // })
+
+
+        // Promise.all()按顺序执行异步任务。都成功，则返回所有数据，有一个失败则返回失败的数据。
+        // const p1 = Promise.resolve(1)
+        // const p2 = Promise.resolve(2)
+        // const p3 = Promise.reject(3)
+        // const p4 = Promise.resolve(4)
+        //     // const p = Promise.all([p1, p2, p3, p4])
+        // const p = Promise.all([p1, p2, p4])
+        // p.then(
+        //     values => {
+        //         console.log(values); //返回的数据是数组的形式
+        //     },
+        //     reason => {
+        //         console.log(reason);
+        //     }
+        // )
+
+
+        // Promise.race()返回执行最快的那个promise对象
+        const p3 = new Promise(
+            (resolve, reject) => {
+                setTimeout(() => {
+                    reject('33333')
+                }, 2000)
+            }
+        )
+        const p2 = new Promise(
+            (resolve, reject) => {
+                setTimeout(
+                    () => {
+                        resolve(2222)
+                    }, 2000
+                )
+            }
+        )
+        const p1 = new Promise(
+            (resolve, reject) => {
+                setTimeout(
+                    () => {
+                        resolve(11111)
+                    }, 2000
+                )
+            }
+        )
+        const p = Promise.race([p1, p3, p2])
+        p.then(
+            value => {
+                console.log(value);
+            },
+            reason => {
+                console.log(reason);
+            }
+        )
+    </script>
+</body>
+
+</html>

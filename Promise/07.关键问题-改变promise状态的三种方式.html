@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p = new Promise(
+            (resolve, reject) => {
+                // resolve(1111)  //方式一
+                // reject(222)  //方式二
+                // throw 3  //方式三
+                throw new Error(3)
+            }
+        )
+        p.then(
+            value => {
+                console.log(value);
+            },
+            reject => {
+                console.log(reject);
+            }
+        )
+
+        // 可以为同一个promise指定多个回调函数，都会调用
+        p.then(
+            value => {
+                console.log(value);
+            },
+            reject => {
+                console.log('balabala', reject);
+            }
+        )
+    </script>
+</body>
+
+</html>

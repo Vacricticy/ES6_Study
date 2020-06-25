@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 常见的内置错误：
+
+        // 1.ReferenceError:引用的变量不存在
+        // console.log(a); //Uncaught ReferenceError: a is not defined
+        // console.log(222); //没有捕获错误，下面的代码不会执行
+
+        // 2.TypeError:数据类型不正确
+        // let b;
+        // console.log(b.age); //Uncaught TypeError: Cannot read property 'age' of undefined
+
+        // let c = {}
+        // c.sing() //Uncaught TypeError: c.sing is not a function
+
+        // 3.RangeError:超出可允许的范围的错误
+        // function fn() {
+        //     fn()
+        // }
+        // fn() //Uncaught RangeError: Maximum call stack size exceeded
+
+        // 4.SyntaxError语法错误
+        // const str="""";
+
+
+        // 处理错误：
+        // 1.捕获异常(错误对象有两个属性message,stack)
+        // try {
+        //     let b;
+        //     console.log(b.age);
+        // } catch (error) {
+        //     console.dir(error);
+        //     console.log(error.message); //错误描述
+        //     console.log(error.stack); //错误类型+错误描述+错误位置
+        // }
+
+        // 2.抛出异常
+        function getTime() {
+            if (new Date() % 2 === 1) {
+                console.log('时间为奇数');
+            } else {
+                throw new Error("时间为偶数")
+            }
+        }
+        try {
+            getTime()
+        } catch (error) {
+            console.dir(error);
+        }
+    </script>
+</body>
+
+</html>
