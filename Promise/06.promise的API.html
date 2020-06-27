@@ -16,6 +16,8 @@
         // Promise.all()
         // Promise.race()
 
+
+        // 1.Promise.prototype.then与Promise.prototype.catch的使用：
         // new Promise((resolve, reject) => {
         //     setTimeout(() => {
         //         if (new Date() % 2 === 0) {
@@ -24,13 +26,18 @@
         //             reject('2222')
         //         }
         //     }, 0)
-        // }).then(value => {
-        //     console.log(value);
-        // }).catch(reason => {
-        //     console.log(reason);
+        // }).then(
+        //     value => {
+        //         console.log(value);
+        //     },
+        //     // reason => {
+        //     //     console.log('失败的回调', reason);
+        //     // }
+        // ).catch(reason => { //若没有失败的回调函数，则catch会捕捉失败的回调
+        //     console.log('catch', reason);
         // })
 
-        // 两个语法糖：Promise.reslove()、Promise.reject()
+        // 2.两个语法糖：Promise.reslove()、Promise.reject()模拟成功和失败的回调
         // const p1 = Promise.resolve(2)
         // const p2 = Promise.reject(3)
         // p1.then(value => {
@@ -41,7 +48,7 @@
         // })
 
 
-        // Promise.all()按顺序执行异步任务。都成功，则返回所有数据，有一个失败则返回失败的数据。
+        // 3.Promise.all()----按顺序执行异步任务。都成功，则返回所有数据;有一个失败则返回失败的原因。
         // const p1 = Promise.resolve(1)
         // const p2 = Promise.resolve(2)
         // const p3 = Promise.reject(3)
@@ -58,7 +65,7 @@
         // )
 
 
-        // Promise.race()返回执行最快的那个promise对象
+        // 4.Promise.race()-----返回执行最快的那个promise对象
         const p3 = new Promise(
             (resolve, reject) => {
                 setTimeout(() => {

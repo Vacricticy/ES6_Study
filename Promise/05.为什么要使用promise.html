@@ -11,7 +11,7 @@
     <script>
         // 1.promise可以使指定回调函数的方式更灵活：
         // 纯回调函数必须在启动异步任务之前指定回调函数
-        // 而promise 可以在异步任务执行之后指定回调函数， 还可以在异步任务执行结束才指定回调函数
+        // 而promise 可以在启动异步任务之后指定回调函数， 还可以在异步任务执行结束后才指定回调函数
 
         // 2.promise支持链式调用，可以解决回调地狱的问题
         // 什么是回调地狱？即回调函数嵌套调用，存在多个串联的异步操作，下一个异步操作依赖于上一个异步操作的结果
@@ -39,6 +39,7 @@
         //         }
         //     }, 0)
         // }
+        // // 必须在调用异步函数时就传入回调函数
         // getData(1, success, error)
         // getData(0, success, error)
 
@@ -65,34 +66,34 @@
         // 回调地狱
         // function getData1(arg, callback) {
         //     setTimeout(() => {
-        //         callback()
+        //         callback('11111')
         //     }, 1000)
         // }
 
         // function getData2(arg, callback) {
         //     setTimeout(() => {
-        //         callback()
+        //         callback('222222')
         //     }, 1000)
         // }
 
         // function getData3(arg, callback) {
         //     setTimeout(() => {
-        //         callback()
+        //         callback('333333')
         //     }, 1000)
         // }
 
         // function getData4(arg, callback) {
         //     setTimeout(() => {
-        //         callback()
+        //         callback('444444')
         //     }, 1000)
         // }
-        // getData1(1, function() {
-        //     console.log(111111111);
-        //     getData2(2, function() {
-        //         console.log(22222222);
-        //         getData3(3, function() {
-        //             console.log(333333333);
-        //             getData4(4, function() {
+        // getData1(1, function(value) {
+        //     console.log(value);
+        //     getData2(2, function(value) {
+        //         console.log(value);
+        //         getData3(3, function(value) {
+        //             console.log(value);
+        //             getData4(4, function(value) {
         //                 console.log(44444444);
         //             })
         //         })

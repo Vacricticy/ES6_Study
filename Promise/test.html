@@ -10,17 +10,29 @@
 <body>
     <script>
         function Father() {
+            // 实例对象上的方法，为每一个实例对象单独开辟一个函数存储空间，通常都不这么用
+            this.bala = function() {
 
+            };
+            // 构造函数的一个变量
+            const bala2 = function bala2() {
+
+            }
         }
         console.log(Father instanceof Object); //true
+        // 直接构造函数对象身上添加的方法
         Father.all = function() {
             console.log(22222);
-        }
+        };
+        // 原型对象上的方法，通常能通过对象.xxx()调用的方法都是定义在构造函数的原型对象上的
         Father.prototype.then = function() {
             console.log(333333);
         }
         console.dir(Father);
         Father.all()
+
+        const father = new Father()
+        console.dir(father);
     </script>
 </body>
 
