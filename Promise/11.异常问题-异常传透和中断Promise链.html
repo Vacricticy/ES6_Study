@@ -43,7 +43,7 @@
             // reason=>Promise.reject(reason)
 
             // 注意：不能写成reason=>{return reason}的形式,
-            // 因为如果return的是一个值，而不是失败的promise对象，则后续所接受到promise对象的状态为resolved
+            // 因为如果return的是一个值，而不是失败的promise对象，则后面所接受到promise对象的状态为resolved
             // 此时就不能被catch接收到
         ).catch(reason => {
             console.log('onRejected1()', reason);

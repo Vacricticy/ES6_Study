@@ -10,9 +10,29 @@
 <body>
     <script src="./lib/Promise.js"></script>
     <script>
-        new Promise((resolve, reject) => {
-            resolve(1)
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1);
+                // 验证回调函数的执行是同步执行的还是异步执行的
+                console.log("resolve()改变状态之后");
+                // reject(22)
+                // throw new Error(333)
+            }, 200);
         })
+        p.then(
+            value => {
+                console.log('onResolved()', value);
+            }, reason => {
+                console.log("onRejected()", reason);
+            }
+        )
+        p.then(
+            value => {
+                console.log('onResolved2()', value);
+            }, reason => {
+                console.log("onRejected2()", reason);
+            }
+        )
     </script>
 </body>
 
