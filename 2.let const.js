@@ -10,8 +10,9 @@
 
 var a = 111;
 let b = 222;
+console.log(window);
 console.log(a, b); //111 222
-// 2.let定义的变量不能通过window访问
+// 2.let定义的变量不会被挂载到window对象上，不能通过window访问
 console.log(window.a, window.b); //111 undefined
 
 var a = 1111;

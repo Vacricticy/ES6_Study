@@ -3,14 +3,14 @@
 /*
 1.全局作用域：
 
-// a是作为全局变量来使用的
+// a是作为全局变量来使用的,var声明的全局变量会挂载到window对象上
 var a = 111;
 console.log(a); //111
 // 全局变量不能被删除。
 console.log(delete a); //false
 console.log(a); //111
 
-// b不是全局变量，而是作为全局对象window的属性来使用的。
+// b不是全局变量，而是直接作为全局对象window的属性来使用的。
 b = 222;
 console.log(b); //222
 // 对象上的属性可以被删除
@@ -29,13 +29,13 @@ function func() {
     // ES5中不存在块级作用域，由于存在‘变量提升’，var b;会被提升到func函数里面的最前面，所有在下面可以访问到b的值。
     // var b = 222;
 
-    // let,const结合块级作用域会时b没有变量提升，老老实实的待在块级作用域里
+    // let,const结合块级作用域时b没有变量提升，会老老实实的待在块级作用域里
     let b = 222;
     console.log(a);
   } else {
   }
 
-  console.log(b); // 使用var: 222,使用let :b is not defined
+  console.log(b); // 使用var，输出 222；使用let ，输出b is not defined
 }
 func();
 
