@@ -10,7 +10,7 @@ console.log(a); //111
 console.log(delete a); //false
 console.log(a); //111
 
-// b不是全局变量，而是直接作为全局对象window的属性来使用的。
+// b不是全局变量，但是会直接作为全局对象window的属性来使用的。
 b = 222;
 console.log(b); //222
 // 对象上的属性可以被删除
@@ -21,15 +21,29 @@ console.log(b); //b is not defined
 */
 
 /*
-2.块级作用域：
 
+2.块级作用域：
+es5中没有块级作用域会出现的问题：
+  在if或for循环中声明的变量会变成全局变量。
+  内层变量可能会覆盖外层变量。
+
+var temp = new Date();
+function f() {
+  console.log(temp);
+  if (false) {
+    var temp = "hello";
+  }
+}
+f(); //undefined
+
+es6中的块级作用域
 function func() {
   var a = 111;
   if (a === 111) {
-    // ES5中不存在块级作用域，由于存在‘变量提升’，var b;会被提升到func函数里面的最前面，所有在下面可以访问到b的值。
+    // var变量会忽略块级作用域的存在，按照在es5中的方式先进行‘变量提升’。所以var b;会被提升到func函数里面的最前面，所以在下面可以访问到b的值。
     // var b = 222;
 
-    // let,const结合块级作用域时b没有变量提升，会老老实实的待在块级作用域里
+    // let,const变量在块级作用域中没有变量提升，只能在块级作用域中被访问
     let b = 222;
     console.log(a);
   } else {
@@ -43,7 +57,7 @@ func();
 
 /*
 3.动态作用域：
-是指this的作用域是动态的。
+是指this指向的作用域是动态的。
 
 a = 10;
 function func() {

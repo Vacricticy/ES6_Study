@@ -5,7 +5,7 @@
 {
   let a = 11;
 }
-// 1.let声明的变量具有块级作用域。
+// 1.let声明的变量只能在块级作用域中使用。
 // console.log(a); //a is not defined
 
 var a = 111;
@@ -60,14 +60,14 @@ console.log(m, n); //111 222
 */
 
 // 练习1：
-// var不存在块级作用域，每个定时器访问的都是全局的i值
+// var不存在块级作用域，i变量属于全局变量，每个定时器最后取到的i值都是全局作用域下的i值。
 for (var i = 0; i < 3; i++) {
   setTimeout(() => {
     console.log(i); //3 3 3
   }, 1000);
 }
 
-// let结合{}会有块级作用域，所以每一个定时器里面的i值都是当前作用域下的i值
+// let变量只能在块级作用域中使用，所以每一个定时器里面的i值都是当前作用域下的i值
 for (let i = 0; i < 3; i++) {
   setTimeout(() => {
     console.log(i); // 0 1 2
@@ -75,6 +75,6 @@ for (let i = 0; i < 3; i++) {
 }
 
 // 练习2：
-// let不存在变量提升，这里会报错
+// let不存在变量提升，这里会报Cannot access 'n' before initialization
 // console.log(m);
 // let m = 10;

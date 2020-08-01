@@ -9,7 +9,7 @@ console.log(b);
 console.log(c);
 console.log(d);
 console.log(m); //undefined
-// 按顺序进行解构
+// 按顺序进行解构赋值
 let [e, f] = arr;
 console.log(e); //11
 console.log(f); //22

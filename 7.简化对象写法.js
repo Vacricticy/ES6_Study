@@ -1,7 +1,7 @@
 let name = "liu";
 let sing = () => console.log("sing a song");
 const obj = {
-  // 1.初始化对象时，可以直接使用变量和函数作为该对象的属性和方法
+  // 1.初始化对象时，可以直接使用变量名和函数名作为该对象的属性和方法
   name,
   sing,
 
@@ -12,7 +12,7 @@ const obj = {
   //     console.log("i love running");
   //   },
 
-  // 形式2：
+  // 形式2：该方法不推荐，因为此处箭头函数中this指向的是window
   //   run: () => {
   //     console.log("i love running");
   //   },
