@@ -23,7 +23,7 @@ console.log(s4, s5, typeof s4, s4 === s5); //Symbol(liu) Symbol(liu) symbol true
 // let rs2 = s > s2; //Cannot convert a Symbol value to a number
 
 // 3.symbol的实际应用场景：
-// 在不知道对象内部结构的情况下，安全的给对象添加属性和方法，不会覆盖原有的属性和方法：
+// 在不知道对象内部结构的情况下，安全的给对象添加唯一的属性和方法，不会覆盖原有的属性和方法：
 
 let mySymbol = Symbol();
 
