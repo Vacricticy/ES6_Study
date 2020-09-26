@@ -1,8 +1,11 @@
+"use strict";
+
 function myNewAjax(url) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
+  return new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
     xhr.send();
+
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status >= 200 && xhr.status < 300) {
@@ -16,12 +19,10 @@ function myNewAjax(url) {
     };
   });
 }
-const p = myNewAjax("https://api.apiopen.top/getJoke");
-p.then(
-  (value) => {
-    console.log(value);
-  },
-  (reason) => {
-    console.log(reason);
-  }
-);
+
+var p = myNewAjax("https://api.apiopen.top/getJoke");
+p.then(function (value) {
+  console.log(value);
+}, function (reason) {
+  console.log(reason);
+});

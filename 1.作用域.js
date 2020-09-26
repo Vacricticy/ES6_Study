@@ -10,12 +10,12 @@ console.log(a); //111
 console.log(delete a); //false
 console.log(a); //111
 
-// b不是全局变量，但是会直接作为全局对象window的属性来使用的。
+// b不是全局变量，但是也会作为全局对象window的属性来使用的。
 b = 222;
 console.log(b); //222
 // 对象上的属性可以被删除
 console.log(delete b); //true
-// 由于b已经被删除掉了，所以会报错
+// 由于b已经被删除掉了，所以再次访问会报错
 console.log(b); //b is not defined
 
 */
@@ -23,7 +23,7 @@ console.log(b); //b is not defined
 /*
 
 2.块级作用域：
-es5中没有块级作用域会出现的问题：
+es5中没有块级作用域时会出现的问题：
   在if或for循环中声明的变量会变成全局变量。
   内层变量可能会覆盖外层变量。
 
@@ -57,7 +57,7 @@ func();
 
 /*
 3.动态作用域：
-是指this指向的作用域是动态的。
+是指this指向的作用域是动态的。（注意：箭头函数中this的指向的静态的）
 
 a = 10;
 function func() {
