@@ -20,23 +20,21 @@ console.log(b); //b is not defined
 
 */
 
-/*
+// 2.块级作用域：
+// es5中没有块级作用域时会出现的问题：
+//   在if或for循环中声明的变量会变成全局变量。
+//   内层变量可能会覆盖外层变量。
 
-2.块级作用域：
-es5中没有块级作用域时会出现的问题：
-  在if或for循环中声明的变量会变成全局变量。
-  内层变量可能会覆盖外层变量。
+// var temp = new Date();
+// function f() {
+//   console.log(temp);
+//   if (false) {
+//     var temp = "hello";
+//   }
+// }
+// f(); //undefined
 
-var temp = new Date();
-function f() {
-  console.log(temp);
-  if (false) {
-    var temp = "hello";
-  }
-}
-f(); //undefined
-
-es6中的块级作用域
+// es6中的块级作用域
 function func() {
   var a = 111;
   if (a === 111) {
@@ -52,8 +50,6 @@ function func() {
   console.log(b); // 使用var，输出 222；使用let ，输出b is not defined
 }
 func();
-
-*/
 
 /*
 3.动态作用域：
