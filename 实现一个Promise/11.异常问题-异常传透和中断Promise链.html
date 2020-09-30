@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        // 1.异常传透
-        new Promise(
-            (resolve, reject) => {
-                // resolve(1)
-                reject(1)
-            }
-        ).then(
-            value => {
-                console.log('onResolved1()', value);
-            },
-            // 没有指定失败的回调函数，则相当于执行了reason=>{throw reason}
-            reason => {
-                throw reason
-            }
-        ).then(
-            value => {
-                console.log('onResolved2()', value);
-            },
-            // 同上，
-            reason => {
-                throw reason
-            }
-        ).then(
-            value => {
-                console.log('onResolved3()', value);
-            },
-            //同上
-            reason => {
-                throw reason
-            }
-            // 可以写成以下形式
-            // reason=>Promise.reject(reason)
-
-            // 注意：不能写成reason=>{return reason}的形式,
-            // 因为如果return的是一个值，而不是失败的promise对象，则后面所接受到promise对象的状态为resolved
-            // 此时就不能被catch接收到
-        ).catch(reason => {
-            console.log('onRejected1()', reason);
-            // 中断promise链
-            return new Promise(() => {}) //返回一个pendding状态的promise
-        }).then(
-            value => {
-                console.log('onResolved4()', value);
-            }
+      // 1.异常传透
+      new Promise((resolve, reject) => {
+        // resolve(1)
+        reject(1);
+      })
+        .then(
+          (value) => {
+            console.log("onResolved1()", value);
+          },
+          // 如果没有指定失败的回调函数，则默认相当于执行了reason=>{throw reason}
+          (reason) => {
+            throw reason;
+          }
         )
-    </script>
-</body>
+        .then(
+          (value) => {
+            console.log("onResolved2()", value);
+          },
+          // 同上，
+          (reason) => {
+            throw reason;
+          }
+        )
+        .then(
+          (value) => {
+            console.log("onResolved3()", value);
+          },
+          //同上
+          (reason) => {
+            throw reason;
+          }
+          // 可以写成以下形式
+          // reason=>Promise.reject(reason)
 
+          // 注意：不能写成reason=>{return reason}的形式,
+          // 因为如果return的是一个值，而不是失败的promise对象，则后面所接受到promise对象的状态为resolved
+          // 此时就不能被catch接收到
+        )
+        .catch((reason) => {
+          console.log("onRejected1()", reason);
+          // 中断promise链
+          return new Promise(() => {}); //返回一个pendding状态的promise
+        })
+        .then((value) => {
+          console.log("onResolved4()", value);
+        });
+    </script>
+  </body>
 </html>

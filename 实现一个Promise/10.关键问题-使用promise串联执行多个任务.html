@@ -1,50 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <script src="./lib/Promise.js"></script>
     <script>
-        // 使用promise串联执行多个任务时，
-        // 若为异步任务，执行的结果必须通过return一个新的promise对象的形式实现
-        // 若为同步任务，执行结果直接通过return就可以实现
-        new Promise(
-            (resolve, reject) => {
-                setTimeout(
-                    () => {
-                        console.log('异步任务1');
-                        resolve(1)
-                    }, 1000
-                )
-            }
-        ).then(
-            value => {
-                console.log('异步任务1的结果', value);
-                console.log('同步任务2');
-                return 2
-            }
-        ).then(
-            value => {
-                console.log('同步任务2的执行结果', value);
-                return new Promise(
-                    (resolve, reject) => {
-                        setTimeout(() => {
-                            console.log('异步任务3');
-                            resolve(3)
-                        })
-                    }
-                )
-            }
-        ).then(
-            value => {
-                console.log('异步任务3的执行结果', value);
-            }
-        )
+      // 使用promise串联执行多个任务时，
+      // 若为异步任务，执行的结果必须通过return一个新的promise对象的形式实现
+      // 若为同步任务，执行结果直接通过return就可以实现
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log("异步任务1");
+          resolve(1);
+        }, 1000);
+      })
+        .then((value) => {
+          console.log("异步任务1的结果", value); //1
+          console.log("同步任务2");
+          return 2;
+        })
+        .then((value) => {
+          console.log("同步任务2的执行结果", value); //2
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              console.log("异步任务3");
+              resolve(3);
+            });
+          });
+        })
+        .then((value) => {
+          console.log("异步任务3的执行结果", value); //3
+        });
     </script>
-</body>
-
+  </body>
 </html>

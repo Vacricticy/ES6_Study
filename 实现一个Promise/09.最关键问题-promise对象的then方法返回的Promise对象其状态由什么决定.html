@@ -1,47 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        // then方法返回的promise对象其状态由什么决定？
-        // 是由then方法内部回调函数的执行结果决定的
-        // 具体来说：
-        // 1.如果没有返回值，则then方法返回的promise状态为resolved,返回的值为undefined       
-        // 2.如果抛出的是一个异常，则then方法返回的promise状态为rejected,返回的值是该错误对象
-        // 3.♥ ♥ ♥  如果return的是数值或非promise对象的值，则无论是在成功的回调函数中return还是在失败的回调函数中return
-        // then方法返回的promise对象状态都为resolved,返回的值即为该数值
-        // 4.如果return的是一个promise对象，则then方法返回的promise状态和其值由return的promise对象决定
-        const p2 = new Promise(
-            (resolve, reject) => {
-                setTimeout(() => {
-                    resolve(222)
-                }, 1000)
-            }
-        ).then(
-            value => {
-                // console.log(value);           // [[PromiseStatus]]: "resolved"  [[PromiseValue]]: undefined
-                // return 2                      // [[PromiseStatus]]: "resolved"  [[PromiseValue]]: 2
-                // return Promise.resolve(3)     // [[PromiseStatus]]: "resolved"  [[PromiseValue]]: 3
-                // return Promise.reject(4)      // [[PromiseStatus]]: "rejected"  [[PromiseValue]]: 4
-                // throw new Error(5)            // [[PromiseStatus]]: "rejected"  [[PromiseValue]]:  Error: 5 at file:///C:/Users/......
-            },
-            reason => {
-                console.log(reason);
-            }
-        );
-        // 打印输出then方法所返回的promise对象
-        setTimeout(
-            () => {
-                console.log(p2);
-            }, 2000
-        )
+      // then方法返回的promise对象其状态由什么决定？
+      // 是由then方法内部回调函数的执行结果决定的
+      // 具体来说：
+      // 1.如果没有返回值，则then方法返回的promise状态为resolved,返回的值为undefined
+      // 2.♥ ♥ ♥  如果return的是数值或非promise对象的值，则无论是在成功的回调函数中return还是在失败的回调函数中return
+      // then方法返回的promise对象状态都为resolved,返回的值即为该数值
+      // 3.如果抛出的是一个异常，则then方法返回的promise状态为rejected,返回的值是该错误对象
+      // 4.如果return的是一个promise对象，则then方法返回的promise状态和其值由return的promise对象决定
+      const p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(222);
+          //   reject(222); 
+        }, 1000);
+      }).then(
+        (value) => {
+          // console.log(value); // [[PromiseStatus]]: "resolved"  [[PromiseValue]]: undefined
+          //   return 2; // [[PromiseStatus]]: "resolved"  [[PromiseValue]]: 2
+          return Promise.resolve(3); // [[PromiseStatus]]: "resolved"  [[PromiseValue]]: 3
+          //   return Promise.reject(4); // [[PromiseStatus]]: "rejected"  [[PromiseValue]]: 4
+          //   throw new Error(5); // [[PromiseStatus]]: "rejected"  [[PromiseValue]]:  Error: 5 at file:///C:/Users/......
+        },
+        (reason) => {
+          console.log(reason);
+          //   return 44;
+        }
+      );
+      // 打印输出then方法所返回的promise对象
+      setTimeout(() => {
+        console.log(p2);
+      }, 2000);
     </script>
-</body>
-
+  </body>
 </html>
