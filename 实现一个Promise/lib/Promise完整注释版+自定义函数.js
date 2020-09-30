@@ -1,10 +1,3 @@
-/*
-要点1：ES5中实现模块化：通过立即执行函数产生一个闭包
-要点2：首先搭建整体的语法结构，即实现的功能
-
-具体：
-实现1：先指定回调函数，再更改promise对象的状态
-*/
 (function (window) {
   const RESOLVED = "resolved";
   const REJECTED = "rejected";
@@ -176,12 +169,65 @@
 
   //  6.Promise函数对象上的all方法
   //  返回一个promise,若所有的promise都成功则成功，否则只要一个失败就失败
-  Promise.all = function (promises) {};
+  Promise.all = function (promises) {
+    let values = new Array(promises.length);
+    let totalValuesLength = 0;
+    return new Promise((resolve, reject) => {
+      promises.forEach((promise, index) => {
+        // 传入的promise数组可能存在数字，即非Promise对象的值,可以通过Promise.resolve包装一下
+        Promise.resolve(promise).then(
+          (value) => {
+            totalValuesLength++;
+            // 这里不使用push方法的原因是因为all返回的value是按照顺序排列的
+            values[index] = value;
+            if (totalValuesLength === promises.length) {
+              resolve(values);
+            }
+          },
+          (reason) => {
+            reject(reason);
+          }
+        );
+      });
+    });
+  };
 
   //  7.Pomise函数对象上的race方法
   //   返回一个promise，其结果由第一个执行完成的peomise决定
-  Promise.race = function (promises) {};
+  Promise.race = function (promises) {
+    return new Promise((resolve, reject) => {
+      promises.forEach((promise, index) => {
+        Promise.resolve(promise).then(
+          (value) => {
+            resolve(value);
+          },
+          (reason) => {
+            reject(reason);
+          }
+        );
+      });
+    });
+  };
 
+  // 8.自定义方法:延迟一定的时间后获取promise对象
+  Promise.resolveDelay = function (value, time) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (value instanceof Promise) {
+          value.then(resolve, reject);
+        } else {
+          resolve(value);
+        }
+      }, time);
+    });
+  };
+  Promise.rejectDelay = function (reason, time) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(reason);
+      }, time);
+    });
+  };
   //♥ 向外暴露Promise构造函数
   window.Promise = Promise;
 })(window);

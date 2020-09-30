@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script src="./lib/Promise完整注释版+自定义函数.js"></script>
+    <!-- <script>
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1);
+                // 验证回调函数的执行是同步执行的还是异步执行的
+                console.log("resolve()改变状态之后");
+                // reject(22)
+                // throw new Error(333)
+            }, 200);
+        })
+        p.then(
+            value => {
+                console.log('onResolved()', value);
+            }, reason => {
+                console.log("onRejected()", reason);
+            }
+        )
+        p.then(
+            value => {
+                console.log('onResolved2()', value);
+            }, reason => {
+                console.log("onRejected2()", reason);
+            }
+        )
+    </script> -->
+
+    <!-- 实现Promise.prototype.then方法 -->
+    <!-- <script>
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // resolve(1);
+                reject(22)
+            }, 200);
+        }).then(
+            value => {
+                console.log('onResolved()', value);
+                return 2
+            }, reason => {
+                console.log("onRejected()", reason);
+                // return 3
+                throw new Error('333')
+            }
+        ).then(
+            value => {
+                console.log('onResolved2()', value);
+            }, reason => {
+                console.log("onRejected2()", reason);
+            }
+        )
+    </script> -->
+
+    <!-- 实现Promise.resolve和Promise.reject方法 -->
+    <!-- Promise.resolve函数中传递的参数可以是非promise的值或Promise对象 -->
+    <!-- 但Promise.reject函数只能传递非promise的值 -->
+    <!-- <script>
+      const p1 = Promise.resolve(111);
+      const p2 = Promise.resolve(Promise.resolve(222));
+      const p3 = Promise.resolve(Promise.reject(3333));
+      p1.then((value) => {
+        console.log("p1", value);
+      });
+      p2.then((value) => {
+        console.log("p2", value);
+      });
+      p3.catch((reason) => {
+        console.log("p3", reason);
+      });
+
+      
+    </script> -->
+
+    <!-- 实现Promise.all和Promise.race方法 -->
+    <!-- <script>
+      const p1 = Promise.resolve(111);
+      const p2 = Promise.resolve(222);
+      const p3 = Promise.reject(333);
+      const ps = Promise.all([p1, 7, p2]);
+      // const ps = Promise.all([p1, p2, p3]);
+      ps.then(
+        (values) => {
+          console.log(values);
+        },
+        (reason) => {
+          console.log(reason);
+        }
+      );
+
+      const p1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(111);
+        }, 2000);
+      });
+      const p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(222);
+        }, 1000);
+      });
+      const p3 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject(333);
+        }, 2000);
+      });
+      const ps = Promise.race([p3, p1, 7, p2]);
+      ps.then(
+        (value) => {
+          console.log(value);
+        },
+        (reason) => {
+          console.log(reason);
+        }
+      );
+    </script> -->
+
+    <!-- 实现自定义的方法 -->
+    <script>
+      const p1 = Promise.resolveDelay(22, 2000);
+      p1.then((value) => {
+        console.log(value);
+      });
+    </script>
+  </body>
+</html>

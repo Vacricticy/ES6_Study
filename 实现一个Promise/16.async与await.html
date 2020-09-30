@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        // async会返回一个promise对象
-        // async function fn1() {
-        //     return 111;
-        //     // throw 222;
-        //     // return Promise.resolve(333)
-        //     // return Promise.reject(444)
-        // }
-        // // console.log(fn1()); //返回的是一个promise对象
-        // fn1().then(
-        //     value => {
-        //         console.log('onResolved', value);
-        //     },
-        //     reason => {
-        //         console.log('onRejected', reason);
-        //     }
-        // )
+      //   async会返回一个promise对象;
+      /*   async function fn1() {
+        // return 111;
+        // throw 222;
+        // return Promise.resolve(333);
+        return Promise.reject(444);
+      }
+      // console.log(fn1()); //返回的是一个promise对象
+      fn1().then(
+        (value) => {
+          console.log("onResolved", value);
+        },
+        (reason) => {
+          console.log("onRejected", reason);
+        }
+      ); */
 
-        // await后面可以跟Promise对象，也可以跟其他值
-        // ❤ await的作用是将成功的promise对象的值取出来
-        async function fn1() {
-            // return 111;
-            // throw 222;
-            return Promise.resolve(333);
-            // return Promise.reject(444)
-        }
+      // ❤ await的作用是将成功的promise对象的值取出来
+      // await后面可以跟Promise对象，也可以跟其他值
+      async function fn1() {
+        // return 111;
+        // throw 222;
+        // return Promise.resolve(333);
+        return Promise.reject(444);
+      }
 
-        function fn2() {
-            return 555;
+      function fn2() {
+        return 555;
+      }
+      async function fn() {
+        // await不能获取失败的promise对象的值，需要try...cathch进行捕获
+        try {
+          const value = await fn1();
+          //   const value = await fn2(); //await右边的可以不是promise对象，通过await返回的值即为原函数返回的值
+          console.log("success", value);
+        } catch (error) {
+          console.log("error", error);
         }
-        async function fn() {
-            // await不能获取失败的promise对象的值，需要try...cathch进行捕获
-            try {
-                // const value = await fn1()
-                const value = await fn2() //await右边的可以不是promise对象，通过await返回的值即为原函数返回的值
-                console.log(value);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fn()
+      }
+      p = fn();
+      setTimeout(() => {
+        console.log(p); //Promise {<fulfilled>: undefined}
+      });
     </script>
-</body>
-
+  </body>
 </html>
