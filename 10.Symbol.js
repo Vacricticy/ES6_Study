@@ -14,6 +14,7 @@ let s3 = Symbol("liu");
 console.log(s2, typeof s2); //Symbol(liu) symbol
 console.log(s2 === s3); //false
 
+// Symbol.for:返回以该参数作为名称的 Symbol 值
 let s4 = Symbol.for("liu");
 let s5 = Symbol.for("liu");
 console.log(s4, s5, typeof s4, s4 === s5); //Symbol(liu) Symbol(liu) symbol true

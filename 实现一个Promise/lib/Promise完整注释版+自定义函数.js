@@ -24,6 +24,7 @@
       that.status = RESOLVED;
       // 指定结果
       that.data = value;
+      // 下面的情况是为了应对先指定回调函数，再改变Promise状态的情况
       // 查看回调函数是否已经指定。若指定了，则立即调用，否则不做处理，等待调用.then方法获取结果
       if (that.callbacks.length > 0) {
         // 因为onResolved和onRejected回调函数需要异步执行，所以可以通过定时器来实现

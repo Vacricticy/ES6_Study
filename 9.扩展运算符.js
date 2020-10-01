@@ -16,7 +16,7 @@ const arr2 = [4, 5, 6];
 console.log(arr1.concat(arr2)); //[ 1, 2, 3, 4, 5, 6 ]
 console.log([...arr1, ...arr2]); //[ 1, 2, 3, 4, 5, 6 ]
 
-// 数组的克隆（浅拷贝???）：
+// 数组的克隆（浅拷贝）：
 const arr3 = [11, 22, 33, { aa: 444, bb: { bbbb: 555 } }];
 const arr4 = [...arr3];
 console.log(arr4);

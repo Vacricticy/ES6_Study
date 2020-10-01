@@ -10,46 +10,46 @@
 <body>
     <script>
         // 试题1：
-        // setTimeout(() => {
-        //     console.log(1);
-        // })
-        // new Promise((resolve, reject) => {
-        //     console.log(2);
-        //     resolve()
-        // }).then(value => {
-        //     console.log(3);
-        // }).then(value => {
-        //     //注意：在3执行之前，此处的promise对象状态为pending,故后续操作是将回调函数存储在callbacks中，
-        //     //等3执行完后，才会调用该回调函数，此时才会将其放入微队列中
-        //     console.log(4);
-        // })
-        // console.log(5);
+        setTimeout(() => {
+            console.log(1);
+        })
+        new Promise((resolve, reject) => {
+            console.log(2);
+            resolve()
+        }).then(value => {
+            console.log(3);
+        }).then(value => {
+            //注意：在3执行之前，此处的promise对象状态为pending,故后续操作是将回调函数存储在callbacks中，
+            //等3执行完后，才会调用该回调函数，此时才会将其放入微队列中
+            console.log(4);
+        })
+        console.log(5);
 
         // // 输出结果：2 5 3 4 1
 
 
 
         // 试题2：
-        // const first = () => (new Promise((resolve, reject) => {
-        //     console.log(1);
-        //     let p = new Promise((resolve, reject) => {
-        //         console.log(2);
-        //         setTimeout(() => {
-        //             console.log(3);
-        //             resolve(4) //因为该promise的状态已经变成了resolved，所以此时再调用是无效的
-        //         })
-        //         resolve(5)
-        //     })
-        //     resolve(6)
-        //     p.then(value => {
-        //         console.log(value);
-        //     })
-        // }))
+        const first = () => (new Promise((resolve, reject) => {
+            console.log(1);
+            let p = new Promise((resolve, reject) => {
+                console.log(2);
+                setTimeout(() => {
+                    console.log(3);
+                    resolve(4) //因为该promise的状态已经变成了resolved，所以此时再调用是无效的
+                })
+                resolve(5)
+            })
+            resolve(6)
+            p.then(value => {
+                console.log(value);
+            })
+        }))
 
-        // first().then(value => {
-        //     console.log(value);
-        // })
-        // console.log(7);
+        first().then(value => {
+            console.log(value);
+        })
+        console.log(7);
 
         // // 宏：[3]
         // // 微：[5 6]
