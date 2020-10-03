@@ -1,4 +1,4 @@
-// Symbol是es6引入的一种新的原始数据类型。是js的第七种数据类型。
+// Symbol是es6引入的一种新的原始数据类型。是js的第六种数据类型。
 // 前六种：undefined,null,boolean,number,string,object
 
 // 引入symbol的原因：为了防止在为对象添加属性时的命名冲突，引入了symbol，用于表示独一无二的值。
@@ -46,3 +46,13 @@ a[mySymbol] = "Hello!";
 console.log(a[mySymbol]); // "Hello!"
 // 点运算符后面表示的是字符串
 console.log(a.mySymbol); //undefined
+
+// 4.对象中symbol类型的属性不能通过for...in和Obejct.keys访问，但可以被Object.getOwnPropertySymbols(obj)访问到
+let o = {
+  name: "liu",
+};
+var age = Symbol("age");
+o[age] = "21";
+console.log(o); //{ name: 'liu', [Symbol(age)]: '21' }
+console.log(Object.keys(o)); //[ 'name' ]
+console.log(Object.getOwnPropertySymbols(o)); //[ Symbol(age) ]

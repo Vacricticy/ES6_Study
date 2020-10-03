@@ -82,7 +82,7 @@ console.log(arr); //[ 11, 22, 33, 44 ]
 //   console.log(value);
 // }
 
-// 6.for...of 遍历所有数据结构的统一的方法, 一个数据结构只要部署了Symbol.iterator属性，就被视为具有 iterator 接口，就可以用for...of循环遍历它的成员。for...of循环内部调用的是数据结构的Symbol.iterator方法。
+// 6.for...of 是遍历所有数据结构的统一的方法, 一个数据结构只要部署了Symbol.iterator属性，就被视为具有 iterator 接口，就可以用for...of循环遍历它的成员。for...of循环内部调用的是数据结构的Symbol.iterator方法。
 // 原生具备iterator接口的数据结构：Array String Set Map arguments对象 （DOM NodeList 对象） TypedArray Generator 对象
 
 // for (const i of [1, 2, 3, 4, 5]) {
